@@ -2,7 +2,8 @@ import React from 'react';
 import * as S from './styles';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import DncPlayLogo from '~/assets/images/dncplay_light_theme.png';
+import DncPlayLogoLight from '~/assets/images/dncplay_light_theme.png';
+import DncPlayLogoDark from '~/assets/images/dncplay_dark_theme.png';
 
 import { ProfileCard } from '~/components/ProfileCard';
 import { LoadingIndicator } from '~/components/LoadingIndicator';
@@ -12,7 +13,7 @@ import { useAuth } from '~/hooks/useAuth';
 
 export function ChooseProfile() {
   const navigation = useNavigation();
-  const { usersList, isLoading, handleSetUser } = useAuth();
+  const { usersList, isLoading, handleSetUser, currentTheme } = useAuth();
 
   function handleNavigateToCreateProfile() {
     navigation.navigate('CreateProfile');
@@ -32,7 +33,12 @@ export function ChooseProfile() {
             keyExtractor={(item, index) => String(index)}
             ListHeaderComponent={() => (
               <>
-                <S.Logo resizeMode="contain" source={DncPlayLogo} />
+                <S.Logo
+                  resizeMode="contain"
+                  source={
+                    currentTheme === 'dark' ? DncPlayLogoDark : DncPlayLogoLight
+                  }
+                />
                 <S.Title>Seja bem-vindo(a) de volta!</S.Title>
                 <S.Text>Quem está assistindo?</S.Text>
               </>
