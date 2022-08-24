@@ -59,6 +59,7 @@ export function useAuth() {
     });
 
     setIsLoading(false);
+    setUser(newUser);
     handleSetIsAuthenticated(true);
   }
 
